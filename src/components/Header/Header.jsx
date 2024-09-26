@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Header() {
-    const authStatue = useSelector((state) => state.auth.status)
+    const authStatus = useSelector((state) => state.auth.status)
     const navigate = useNavigate()
 
     const navItems = [
@@ -57,7 +57,7 @@ function Header() {
                                 ) : null
                             ))
                         }
-                        {authStatue && (
+                        {authStatus && (
                             <li>
                                 <LogoutBtn/>
                             </li>

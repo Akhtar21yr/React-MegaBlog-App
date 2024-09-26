@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -18,7 +18,7 @@ function Protected({children,authentication=true}) {
     },[authStatus,navigate,authentication])
   return (
     <div>
-      
+      {children}
     </div>
   )
 }

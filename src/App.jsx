@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import authService from './appwrite/auth_service.js'
 import { login, logout } from './redux/authSlice.js'
 import { Footer, Header } from './components/index.js'
+import { Outlet } from 'react-router-dom'
 
 
 function App() {
@@ -30,15 +31,11 @@ function App() {
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400 '>
       <div className="w-full block">
-        <Header/>
+      <Header />
         <main>
-          <pre>
-
-          {JSON.stringify(data, null ,2)}
-          </pre>
-          <button onClick={() => dispatch(login({name: "Akhtar"}))} >insertUser</button>
+ <Outlet />
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   ) : null

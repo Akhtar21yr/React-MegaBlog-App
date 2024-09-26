@@ -1,4 +1,4 @@
-import conf from "../conf.js";
+import conf from "../conf/conf";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class DbService {
@@ -18,7 +18,7 @@ export class DbService {
       return await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        slug,
+        slug.slice(0,36),
         {
           title,
           content,
@@ -65,6 +65,7 @@ export class DbService {
   }
 
   async getPost(slug) {
+    
     try {
       return await this.databases.getDocument(
         conf.appwriteDatabaseId,
