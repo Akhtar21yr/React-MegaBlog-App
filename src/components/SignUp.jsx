@@ -10,11 +10,13 @@ import { login } from '../redux/authSlice'
 function Signup() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
 
     const create = async(data) => {
         setError("")
+        setLoading(true)
         try {
             const userData = await authService.createAccount(data)
             if (userData) {
@@ -22,19 +24,16 @@ function Signup() {
                 if (userData) {
                   dispatch(login(userData));
                 }
+                setLoading(false)
                 navigate("/")
             }
         } catch (error) {
+            console.log(error.message)
             setError(error.message)
+            setLoading(false)
         }
     }
-    useEffect(() => {
-        
-       console.log("caakkef");
-       
-    }, []);
-
-  return (
+  return !loading ? (
     <div className="flex items-center justify-center">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
             <div className="mb-2 flex justify-center">
@@ -90,7 +89,7 @@ function Signup() {
             </div>
 
     </div>
-  )
+  ) : <div className='text-center'>Loading.....</div>
 }
 
 export default Signup
